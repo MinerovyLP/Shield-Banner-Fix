@@ -1,6 +1,10 @@
 package net.minerovy.shieldbannerfix;
 
-public class ShieldBannerFix {
+import net.fabricmc.api.ModInitializer;
 
-    public static final String MOD_ID = "shieldbannerfix";
+public class ShieldBannerFix implements ModInitializer {
+    @Override
+    public void onInitialize() {
+
+    }
 }
