@@ -3,8 +3,6 @@ plugins {
     id 'net.darkhax.curseforgegradle'
 }
 
-apply from: '../gradle/patreon.gradle'
-
 base {
     archivesName = "${mod_name}-NeoForge-${minecraft_version}"
 }
@@ -86,66 +84,5 @@ processResources {
     filesMatching(['META-INF/mods.toml', 'pack.mcmeta', '*.mixins.json']) {
 
         expand buildProps
-    }
-}
-
-// -- MAVEN PUBLISHING --
-project.publishing {
-
-    publications {
-
-        mavenJava(MavenPublication) {
-
-            artifactId = base.archivesName.get()
-            from components.java
-        }
-    }
-
-    repositories {
-
-        maven {
-
-            // Sets maven credentials if they are provided. This is generally
-            // only used for external/remote uploads.
-            if (project.hasProperty('mavenUsername') && project.hasProperty('mavenPassword')) {
-
-                credentials {
-
-                    username findProperty('mavenUsername')
-                    password findProperty('mavenPassword')
-                }
-            }
-
-            url getDefaultString('mavenURL', 'undefined', true)
-        }
-    }
-}
-
-// CurseForge Publishing
-task publishCurseForge(type: net.darkhax.curseforgegradle.TaskPublishCurseForge) {
-
-    apiToken = findProperty('curse_auth')
-
-    def mainFile = upload(curse_project, jar)
-    mainFile.changelogType = 'markdown'
-    mainFile.changelog = project.ext.mod_changelog
-    mainFile.addJavaVersion('Java 17')
-    mainFile.releaseType = 'release'
-    mainFile.addGameVersion('Server', 'Client')
-    mainFile.addRequirement('bookshelf')
-
-    // Append Patreon Supporters
-    def patreonInfo = project.findProperty('patreon')
-
-    if (patreonInfo) {
-        mainFile.changelog += "\n\nThis project is made possible by [Patreon](${patreonInfo.campaignUrlTracked}) support from players like you. Thank you!\n\n${patreonInfo.pledgeLog}"
-    }
-
-    doLast {
-
-        if (project.hasProperty('mod_homepage')) {
-
-            project.ext.curse_file_url = "${mod_homepage}/files/${mainFile.curseFileId}"
-        }
     }
 }

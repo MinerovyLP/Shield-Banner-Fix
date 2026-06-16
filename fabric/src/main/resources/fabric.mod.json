@@ -30,10 +30,7 @@
   "custom": {
     "modmenu": {
       "links": {
-        "modmenu.twitter": "${mod_twitter}",
-        "modmenu.discord": "${mod_discord}",
-        "modmenu.curseforge": "${mod_homepage}",
-        "modmenu.patreon": "${patreon.campaignUrlTracked}"
+        "modmenu.github": "${mod_homepage}"
       }
     }
   }
