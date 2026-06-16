@@ -1,0 +1,21 @@
+{
+    "schemaVersion": 1,
+    "id": "shieldbannerfix",
+    "version": "${version}",
+    "name": "Shield Banner Fix",
+    "description": "Fixes issues related to banner patterns on shields.",
+    "authors": [
+      "MinerovyLP"
+    ],
+    "icon": "logo.png",
+    "environment": "*",
+    "entrypoints": {
+      "main": [
+        "net.minerovy.shieldbannerfix.ShieldBannerFix"
+      ]
+    },
+    "depends": {
+      "minecraft": "~1.21.4",
+      "java": ">=21"
+    }
+}

@@ -1,4 +1,4 @@
-package net.darkhax.shieldbannerfix;
+package net.minerovy.shieldbannerfix;
 
 public class ShieldBannerFix {
 
